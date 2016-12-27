@@ -1,3 +1,9 @@
 dependencies:
   override:
      - chmod +x gradlew
+     - ./gradlew buildDocker
+deployment:
+  prod:
+    branch: master
+    commands:
+      - sh ./deploy.sh
