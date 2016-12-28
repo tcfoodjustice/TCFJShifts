@@ -4,6 +4,7 @@ machine:
 dependencies:
   override:
      - chmod +x gradlew
+     - ./gradlew build
   post:
      - docker build -t 417615409974.dkr.ecr.us-west-2.amazonaws.com/tcfj-shiftspersistence:latest .
 deployment:
