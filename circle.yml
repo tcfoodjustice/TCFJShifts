@@ -1,7 +1,12 @@
+machine:
+  services:
+    - docker
 dependencies:
   override:
      - chmod +x gradlew
      - ./gradlew buildDocker
+  post:
+     - docker build -t 417615409974.dkr.ecr.us-west-2.amazonaws.com/motherboxx-images:latest .
 deployment:
   prod:
     branch: master
