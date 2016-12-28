@@ -19,7 +19,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'docker'
 
 jar {
-    baseName = 'gs-rest-service'
+    baseName = 'gs-spring-boot-docker'
     version =  '0.1.0'
 }
 
