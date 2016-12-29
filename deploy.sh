@@ -25,7 +25,7 @@ deploy_cluster() {
     # not really necessary, but nice for demos
     for attempt in {1..300}; do
         if stale=$(aws ecs describe-services --cluster TCFJCluster --services ShiftsPersistence | \
-                       $JQ ".services[0].deployments | .[] | select(.taskDefinition != \"$revision\") | .taskDefinition"); then
+                       $JQ ".services[0].deployments | .[]? | select(.taskDefinition != \"$revision\") | .taskDefinition"); then
             echo "Waiting for stale deployments:"
             echo "$stale"
             sleep 5
