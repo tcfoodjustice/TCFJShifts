@@ -12,6 +12,7 @@ import java.util.List;
  * Created by andrew.larsen on 10/25/2016.
  */
 @RestController
+@RequestMapping(value = "tcfj/v1")
 public class ShiftController {
     //The autowired tag injects a "bean" (a spring bean)
     //the bean is an instance of a ShiftDao object

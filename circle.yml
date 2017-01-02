@@ -8,7 +8,7 @@ dependencies:
   post:
      - docker build -t 417615409974.dkr.ecr.us-west-2.amazonaws.com/tcfj-shiftspersistence:latest .
 deployment:
-  prod:
+  development:
     branch: development
     commands:
       - sh ./deploy.sh

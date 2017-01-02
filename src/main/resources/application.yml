@@ -1,0 +1,9 @@
+spring:
+  profiles : test
+---
+spring:
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://35.166.166.220:3306/tfcj_rds_db
+        username: awsmaster
+        password: masterpwd3251

@@ -25,8 +25,12 @@ public class ShiftDaoImpl implements ShiftDao {
             "volunteer_3,pick_up_time,mode_of_transit,food_donated_weight,food_composted_weight,shift_length,food_type_summary," +
             "comments,supplies_stocked,submit_time from Shifts";
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public ShiftDaoImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     /**
      * Method to use jdbcTemplate to retrieve rows from sql query
