@@ -4,7 +4,7 @@ spring:
 spring:
     datasource:
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://35.166.166.220:3306/tfcj_rds_db
-        username: awsmaster
-        password: masterpwd3251
-        connectionTimeout: 2000
+        url: ${DB_URL}
+        username: ${DB_USER}
+        password: ${DB_PASSWORD}
+        connectionTimeout: {DB_CONNECTION_TIMEOUT}
