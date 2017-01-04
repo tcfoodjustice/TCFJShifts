@@ -31,7 +31,7 @@ public class GreetingControllerTest {
     public void testGreetingString() throws Exception {
         ResponseEntity<String> resp = this.testRestTemplate.getForEntity("/greetings",String.class);
 
-        assertThat(resp.getBody(), is("Hello World Change"));
+        assertThat(resp.getBody(), is("Hello World"));
 
     }
 }

@@ -16,6 +16,6 @@ public class GreetingController {
 
     @RequestMapping("/greetings")
     public String greeting() {
-        return "Hello World Change";
+        return "Hello World";
     }
 }
