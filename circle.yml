@@ -1,4 +1,6 @@
 machine:
+  python:
+    version: 2.7.3
   services:
     - docker
 
@@ -6,9 +8,11 @@ dependencies:
   override:
      - chmod +x gradlew
      - ./gradlew build
+     - docker info
+     - docker build --rm=false -t larse514/tcfjshifts:$CIRCLE_SHA1 .
+
   pre:
      - pip install awscli
-     - docker build --rm=false -t larse514/tcfjshifts:10000 .
 test:
   post:
     - docker run -d -p 8080:8080 -e "SECRET_KEY_BASE=abcd1234" circleci/hello:$CIRCLE_SHA1; sleep 10
