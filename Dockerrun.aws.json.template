@@ -1,0 +1,17 @@
+
+{
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Bucket": "elasticbeanstalk-us-west-2-417615409974",
+    "Key": "dockercfg"
+  },
+  "Image": {
+    "Name": "larse514/tcfjshifts:<TAG>",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "8080"
+    }
+  ]
+}
