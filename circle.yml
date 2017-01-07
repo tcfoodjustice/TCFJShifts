@@ -13,6 +13,7 @@ dependencies:
 
   pre:
      - pip install awscli
+     - aws configure set default.region us-west-2
 test:
   post:
     - docker run -d -p 8080:8080 --name shiftsservice larse514/tcfjshifts:$CIRCLE_SHA1; sleep 10
