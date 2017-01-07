@@ -8,7 +8,7 @@ docker push larse514/tcfjshifts:$SHA1
 
 # Create new Elastic Beanstalk version
 EB_BUCKET=elasticbeanstalk-us-west-2-417615409974
-DOCKERRUN_FILE=Dockerrun.aws.json
+DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json
 sed "s/<TAG>/$SHA1/" < Dockerrun.aws.json.template > $DOCKERRUN_FILE
 echo $DOCKERRUN_FILE
 echo $EB_BUCKET
