@@ -3,7 +3,7 @@
   "AWSEBDockerrunVersion": "1",
   "Authentication": {
     "Bucket": "elasticbeanstalk-us-west-2-417615409974",
-    "Key": "dockercfg"
+    "Key": "~/.docker/config.json"
   },
   "Image": {
     "Name": "larse514/tcfjshifts:<TAG>",
