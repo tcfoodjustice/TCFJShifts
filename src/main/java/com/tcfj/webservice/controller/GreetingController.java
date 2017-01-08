@@ -23,6 +23,6 @@ public class GreetingController {
     }
     @RequestMapping("/environment")
     public String env() {
-        return "var: " + env.getProperty("DB_URL");
+        return "another var: " + env.getProperty("DB_URL");
     }
 }
