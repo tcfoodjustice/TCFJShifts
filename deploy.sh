@@ -18,6 +18,7 @@ ls
 
 #todo-update this to create environment in DEV and tear down after tests
 aws s3 cp $DOCKERRUN_FILE s3://$EB_BUCKET/$DOCKERRUN_FILE
+
 aws elasticbeanstalk create-application-version --application-name ShiftsService \
   --version-label $SHA1 --source-bundle S3Bucket=$EB_BUCKET,S3Key=$DOCKERRUN_FILE
 
