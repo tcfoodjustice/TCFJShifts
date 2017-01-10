@@ -37,9 +37,5 @@ public class ShiftController {
         //to return the created shift after
         return new Shift();
     }
-    @GetMapping("/shifts")
-    public Shift get(){
-        //this calls an returns the reponse fromt he getAllShifts method
-        return new Shift();
-    }
+
 }
