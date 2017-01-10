@@ -24,5 +24,5 @@ aws elasticbeanstalk create-application-version --application-name ShiftsService
 aws elasticbeanstalk update-environment --environment-name ShiftService-$env \
     --version-label $SHA1
 
-aws elasticbeanstalk   describe-environment-health --environment-name ShiftService-$env \
-    --attribute-names ALL
+aws elasticbeanstalk  describe-environment-health --environment-name ShiftService-$env \
+    --attribute-names All
