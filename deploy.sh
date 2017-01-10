@@ -24,9 +24,11 @@ aws elasticbeanstalk create-application-version --application-name ShiftsService
 # Update Elastic Beanstalk environment to new version
 updateResponse=`aws elasticbeanstalk update-environment --environment-name ShiftService-"${env}" \
     --version-label "${SHA1}"`
+echo "update response is $updateResponse"
 updateStatus=`echo $updateResponse|python -c "import sys, json; print(json.load(sys.stdin)['Status'])"`
 #check update status
-if [ $updateStatus == 'Updating' ]; then
+echo "status is $updateStatus"
+if [ $updateStatus = Updating ]; then
      echo "Update started"
  else
      echo "Deployment failed with status $updateStatus"
