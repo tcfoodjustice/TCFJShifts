@@ -21,8 +21,5 @@ public class GreetingController {
     public String greeting() {
         return "Hello World";
     }
-    @RequestMapping("/environment")
-    public String env() {
-        return "another var: " + env.getProperty("DB_URL");
-    }
+
 }
