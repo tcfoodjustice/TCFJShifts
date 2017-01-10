@@ -1,0 +1,55 @@
+{
+	"id": "561cf884-d7b4-50a0-450e-09270046a314",
+	"name": "TCFJ_Shift",
+	"description": "",
+	"order": [
+		"54907e56-3c1b-1515-7783-68d447bccc2d",
+		"32cf6621-5859-e798-b639-2a9e3ea48468"
+	],
+	"folders": [],
+	"timestamp": 1484017199742,
+	"owner": "837563",
+	"public": false,
+	"requests": [
+		{
+			"id": "32cf6621-5859-e798-b639-2a9e3ea48468",
+			"headers": "",
+			"url": "{{URL}}/tcfj/v1/shifts",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "561cf884-d7b4-50a0-450e-09270046a314",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get all shifts",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1484017807725,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Response time is less than 200ms\"] = responseTime < 200;\n\nvar jsonData = JSON.parse(responseBody);\ntests[\"Assert that an array was returned\"] = jsonData.length > 0;",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "54907e56-3c1b-1515-7783-68d447bccc2d",
+			"headers": "",
+			"url": "{{URL}}/greetings",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "561cf884-d7b4-50a0-450e-09270046a314",
+			"data": null,
+			"dataMode": "params",
+			"name": "Hello World",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1484017271968,
+			"version": 2,
+			"responses": [],
+			"tests": "tests[\"Body matches string\"] = responseBody.has(\"Hello World\");\n\ntests[\"Status code is 200\"] = responseCode.code === 200;",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
