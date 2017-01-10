@@ -2,6 +2,7 @@
 #! /bin/bash
 
 SHA1=$1
+env=$2
 
 # Deploy image to Docker Hub
 docker push larse514/tcfjshifts:$SHA1
@@ -20,7 +21,7 @@ aws elasticbeanstalk create-application-version --application-name ShiftsService
   --version-label $SHA1 --source-bundle S3Bucket=$EB_BUCKET,S3Key=$DOCKERRUN_FILE
 
 # Update Elastic Beanstalk environment to new version
-aws elasticbeanstalk update-environment --environment-name ShiftsService-env \
+aws elasticbeanstalk update-environment --environment-name ShiftsService-$env \
     --version-label $SHA1
 
-aws elasticbeanstalk describe-environment-managed-actions --environment-name ShiftsService-env
+aws elasticbeanstalk describe-environment-managed-actions --environment-name ShiftService-$env
