@@ -35,18 +35,14 @@ if [ $updateStatus = Updating ]; then
      exit 1
  fi
 
-aws elasticbeanstalk describe-environment-health --environment-name ShiftService-$env \
-    --attribute-names All
-     deploymentId=`echo $deployout|python -c "import sys, json; print(json.load(sys.stdin)['deploymentId'])"`
-
  while [ $updateStatus != 'Ready' ] && [ $updateStatus != 'Terminated' ]; do
      echo "deploy status is $updateStatus"
-     checkStatus = aws elasticbeanstalk describe-environment-health --environment-name ShiftService-$env \
-        --attribute-names All
-     updateStatus=`echo $checkStatus|python -c "import sys, json; print(json.load(sys.stdin)['Status'])"`
+     updateResponse=`aws elasticbeanstalk describe-environment-health --environment-name ShiftService-$env \
+        --attribute-names All`
+     updateStatus=`echo $updateResponse|python -c "import sys, json; print(json.load(sys.stdin)['Status'])"`
      sleep 4
  done
- if [ $updateStatus == 'Ready' ]; then
+ if [ $updateStatus = Ready ]; then
      echo "Deployment succeeded!"
  else
      echo "Deployment failed with status $updateStatus"
