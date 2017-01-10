@@ -19,6 +19,7 @@ public class ApplicationConfig {
     //use to access property file values
     @Autowired
     Environment env;
+
     @Autowired
     DataSource dataSource;
     //define the JdbcTemplate bean, which is injected into the ShiftDaoImpl
