@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 
 /**
@@ -24,6 +25,11 @@ public class ShiftDaoImpl implements ShiftDao {
     private String getAllShifts = "select shift_id,donar_name,recipient_name,rescue_date,volunteer_1,volunteer_2," +
             "volunteer_3,pick_up_time,mode_of_transit,food_donated_weight,food_composted_weight,shift_length,food_type_summary," +
             "comments,supplies_stocked,submit_time from Shifts";
+
+    private final static String insertShiftDetails = "INSERT INTO Shifts" + "( donar_name, recipient_name)" +
+            "VALUES (?,?)";
+
+
 
     private JdbcTemplate jdbcTemplate;
 
@@ -45,6 +51,16 @@ public class ShiftDaoImpl implements ShiftDao {
         //build.gradle file
         List<Shift> shifts = jdbcTemplate.query(getAllShifts, new ShiftRowMapper());
         return shifts;
+    }
+    /**
+     * Method to use jdbc template to insert shift
+     */
+    @Override
+    public int insertShift(Shift shift) {
+        Object[] param = {shift.getDonarName(), shift.getRecipientName()};
+        int[] types = {Types.VARCHAR, Types.VARCHAR};
+        return jdbcTemplate.update(insertShiftDetails, param, types);
+
     }
 
     /**

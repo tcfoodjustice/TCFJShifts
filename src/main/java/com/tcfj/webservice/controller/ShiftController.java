@@ -24,7 +24,7 @@ public class ShiftController {
     //method at: localhost:8080/shifts
     @RequestMapping("/shifts")
     public List<Shift> getAllShifts(){
-        //this calls an returns the reponse fromt he getAllShifts method
+        //this calls an returns the response from the getAllShifts method
         return shiftDao.getAllShifts();
     }
 
@@ -33,7 +33,7 @@ public class ShiftController {
     @ResponseStatus(HttpStatus.CREATED)
     //The @RequestBody is what contains the HTTP request body (in this case the shift to be inserted
     public Shift insertShift(@RequestBody Shift shift){
-        //an insert method will need to be created int he ShiftDao and called here.  It's common practice
+        //an insert method will need to be created in the ShiftDao and called here.  It's common practice
         //to return the created shift after
         return new Shift();
     }

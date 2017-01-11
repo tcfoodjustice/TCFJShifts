@@ -12,4 +12,6 @@ import java.util.List;
 public interface ShiftDao {
 
     List<Shift> getAllShifts();
+    int insertShift(Shift shift);
+
 }
