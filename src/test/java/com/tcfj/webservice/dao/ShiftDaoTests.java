@@ -48,8 +48,8 @@ public class ShiftDaoTests {
 
         assertThat(shifts.size(), is(1));
         assertThat(shifts.get(0).getShiftId(), is(1));
-        assertThat(shifts.get(0).getDonarId(), is(1));
-        assertThat(shifts.get(0).getReceiptId(), is(1));
+        assertThat(shifts.get(0).getDonarName(), is("Seward Co-Op Friendship Store"));
+        assertThat(shifts.get(0).getRecipientName(), is("St.Stephens Homeless Shelter"));
         assertThat(shifts.get(0).getVolunteer1(), is("Andrew Larsen"));
         assertThat(shifts.get(0).getVolunteer2(), is("Alec Larsen"));
         assertThat(shifts.get(0).getModeOfTransit(), is("car"));

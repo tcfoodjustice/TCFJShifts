@@ -52,8 +52,8 @@ public class GetAllShiftsIntegrationTests {
         List<Shift> shifts = resp.getBody();
         assertThat(shifts.size(), CoreMatchers.is(1));
         assertThat(shifts.get(0).getShiftId(), CoreMatchers.is(1));
-        assertThat(shifts.get(0).getDonarId(), CoreMatchers.is(1));
-        assertThat(shifts.get(0).getReceiptId(), CoreMatchers.is(1));
+        assertThat(shifts.get(0).getDonarName(), CoreMatchers.is("Seward Co-Op Friendship Store"));
+        assertThat(shifts.get(0).getRecipientName(), CoreMatchers.is("St.Stephens Homeless Shelter"));
         assertThat(shifts.get(0).getVolunteer1(), CoreMatchers.is("Andrew Larsen"));
         assertThat(shifts.get(0).getVolunteer2(), CoreMatchers.is("Alec Larsen"));
         assertThat(shifts.get(0).getModeOfTransit(), CoreMatchers.is("car"));

@@ -6,8 +6,8 @@ package com.tcfj.webservice.model;
 public class Shift {
 
     private int shiftId;
-    private int donarId;
-    private int receiptId;
+    private String donarName;
+    private String recipientName;
     private String rescueDate;
     private String volunteer1;
     private String volunteer2;
@@ -30,20 +30,20 @@ public class Shift {
         this.shiftId = shiftId;
     }
 
-    public int getDonarId() {
-        return donarId;
+    public String getDonarName() {
+        return donarName;
     }
 
-    public void setDonarId(int donarId) {
-        this.donarId = donarId;
+    public void setDonarName(String donarName) {
+        this.donarName = donarName;
     }
 
-    public int getReceiptId() {
-        return receiptId;
+    public String getRecipientName() {
+        return recipientName;
     }
 
-    public void setReceiptId(int receiptId) {
-        this.receiptId = receiptId;
+    public void setRecipientName(String recipientName) {
+        this.recipientName = recipientName;
     }
 
     public String getRescueDate() {

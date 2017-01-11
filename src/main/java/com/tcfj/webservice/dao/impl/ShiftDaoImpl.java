@@ -21,7 +21,7 @@ public class ShiftDaoImpl implements ShiftDao {
     //The query could use "select *" rather than each individual row,
     //but it is best practice to explicitly return the rows you want.
     //For performance reasons and to be explicit with what you need
-    private String getAllShifts = "select shift_id,donar_id,recipient_id,rescue_date,volunteer_1,volunteer_2," +
+    private String getAllShifts = "select shift_id,donar_name,recipient_name,rescue_date,volunteer_1,volunteer_2," +
             "volunteer_3,pick_up_time,mode_of_transit,food_donated_weight,food_composted_weight,shift_length,food_type_summary," +
             "comments,supplies_stocked,submit_time from Shifts";
 
@@ -57,8 +57,8 @@ public class ShiftDaoImpl implements ShiftDao {
             Shift shift = new Shift();
 
             shift.setShiftId(rs.getInt("shift_id"));
-            shift.setDonarId(rs.getInt("donar_id"));
-            shift.setReceiptId(rs.getInt("recipient_id"));
+            shift.setDonarName(rs.getString("donar_name"));
+            shift.setRecipientName(rs.getString("recipient_name"));
             shift.setRescueDate(rs.getDate("rescue_date").toString());
             shift.setVolunteer1(rs.getString("volunteer_1"));
             shift.setVolunteer2(rs.getString("volunteer_2"));
