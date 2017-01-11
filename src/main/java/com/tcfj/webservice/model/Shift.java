@@ -5,7 +5,7 @@ package com.tcfj.webservice.model;
  */
 public class Shift {
 
-    private int shiftId;
+    private Integer shiftId;
     private String donarName;
     private String recipientName;
     private String rescueDate;
@@ -14,19 +14,19 @@ public class Shift {
     private String volunteer3;
     private String pickUpTime;
     private String modeOfTransit;
-    private int foodDonatedWeight;
-    private int foodCompostedWeight;
-    private int shiftLength;
+    private Integer foodDonatedWeight;
+    private Integer foodCompostedWeight;
+    private Integer shiftLength;
     private String foodTypeSummary;
     private String comments;
-    private boolean suppliesStocked;
+    private Boolean suppliesStocked;
     private String submitTime;
 
-    public int getShiftId() {
+    public Integer getShiftId() {
         return shiftId;
     }
 
-    public void setShiftId(int shiftId) {
+    public void setShiftId(Integer shiftId) {
         this.shiftId = shiftId;
     }
 
@@ -94,27 +94,27 @@ public class Shift {
         this.modeOfTransit = modeOfTransit;
     }
 
-    public int getFoodDonatedWeight() {
+    public Integer getFoodDonatedWeight() {
         return foodDonatedWeight;
     }
 
-    public void setFoodDonatedWeight(int foodDonatedWeight) {
+    public void setFoodDonatedWeight(Integer foodDonatedWeight) {
         this.foodDonatedWeight = foodDonatedWeight;
     }
 
-    public int getFoodCompostedWeight() {
+    public Integer getFoodCompostedWeight() {
         return foodCompostedWeight;
     }
 
-    public void setFoodCompostedWeight(int foodCompostedWeight) {
+    public void setFoodCompostedWeight(Integer foodCompostedWeight) {
         this.foodCompostedWeight = foodCompostedWeight;
     }
 
-    public int getShiftLength() {
+    public Integer getShiftLength() {
         return shiftLength;
     }
 
-    public void setShiftLength(int shiftLength) {
+    public void setShiftLength(Integer shiftLength) {
         this.shiftLength = shiftLength;
     }
 
@@ -134,11 +134,11 @@ public class Shift {
         this.comments = comments;
     }
 
-    public boolean isSuppliesStocked() {
+    public Boolean isSuppliesStocked() {
         return suppliesStocked;
     }
 
-    public void setSuppliesStocked(boolean suppliesStocked) {
+    public void setSuppliesStocked(Boolean suppliesStocked) {
         this.suppliesStocked = suppliesStocked;
     }
 
