@@ -59,7 +59,7 @@ public class ShiftDaoImpl implements ShiftDao {
             shift.setShiftId(rs.getInt("shift_id"));
             shift.setDonarName(rs.getString("donar_name"));
             shift.setRecipientName(rs.getString("recipient_name"));
-            shift.setRescueDate(rs.getDate("rescue_date").toString());
+            shift.setRescueDate((rs.getString("rescue_date")));
             shift.setVolunteer1(rs.getString("volunteer_1"));
             shift.setVolunteer2(rs.getString("volunteer_2"));
             shift.setVolunteer3(rs.getString("volunteer_3"));
