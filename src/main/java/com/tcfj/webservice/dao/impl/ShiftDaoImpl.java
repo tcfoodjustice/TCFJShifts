@@ -26,8 +26,10 @@ public class ShiftDaoImpl implements ShiftDao {
             "volunteer_3,pick_up_time,mode_of_transit,food_donated_weight,food_composted_weight,shift_length,food_type_summary," +
             "comments,supplies_stocked,submit_time from Shifts";
 
-    private final static String insertShiftDetails = "INSERT INTO Shifts" + "( donar_name, recipient_name)" +
-            "VALUES (?,?)";
+    private final static String insertShiftDetails = "INSERT INTO Shifts" + "( donar_name, recipient_name, rescue_date, volunteer_1, " +
+            "volunteer_2, volunteer_3, pick_up_time, mode_of_transit,food_donated_weight,food_composted_weight," +
+            "shift_length,food_type_summary,comments,supplies_stocked,submit_time)" +
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURTIME())";
 
 
 
@@ -57,8 +59,13 @@ public class ShiftDaoImpl implements ShiftDao {
      */
     @Override
     public int insertShift(Shift shift) {
-        Object[] param = {shift.getDonarName(), shift.getRecipientName()};
-        int[] types = {Types.VARCHAR, Types.VARCHAR};
+        Object[] param = {shift.getDonarName(), shift.getRecipientName(), shift.getRescueDate(), shift.getVolunteer1(),
+        shift.getVolunteer2(), shift.getVolunteer3(), shift.getPickUpTime(), shift.getModeOfTransit(), shift.getFoodDonatedWeight(),
+        shift.getFoodCompostedWeight(), shift.getShiftLength(), shift.getFoodTypeSummary(), shift.getComments(),
+        shift.isSuppliesStocked()};
+        int[] types = {Types.VARCHAR, Types.VARCHAR, Types.DATE, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
+        Types.DATE, Types.VARCHAR, Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.TINYINT
+        };
         return jdbcTemplate.update(insertShiftDetails, param, types);
 
     }
