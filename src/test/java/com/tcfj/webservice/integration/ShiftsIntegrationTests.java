@@ -151,6 +151,8 @@ public class ShiftsIntegrationTests {
         assertEquals(insertedShift.getVolunteer1(), shift.getVolunteer1());
         assertEquals(insertedShift.getVolunteer2(), shift.getVolunteer2());
         assertEquals(insertedShift.getVolunteer3(), shift.getVolunteer3());
+        assertEquals(insertedShift.isSuppliesStocked(), shift.isSuppliesStocked());
+
 
 
 
