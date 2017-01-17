@@ -91,7 +91,7 @@ public class ShiftDaoImpl implements ShiftDao {
             shift.setFoodDonatedWeight(rs.getInt("food_donated_weight"));
             shift.setFoodCompostedWeight(rs.getInt("food_composted_weight"));
             shift.setShiftLength(rs.getInt("shift_length"));
-            shift.setFoodTypeSummary("food_type_summary");
+            shift.setFoodTypeSummary(rs.getString("food_type_summary"));
             shift.setComments(rs.getString("comments"));
             shift.setSuppliesStocked(rs.getBoolean("supplies_stocked"));
             shift.setSubmitTime(rs.getString("submit_time"));

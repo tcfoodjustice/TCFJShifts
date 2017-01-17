@@ -20,7 +20,7 @@ public class TestApplicationConfig {
 
     @Bean
     @Primary
-    public EmbeddedDatabase dataSource(){
+    public EmbeddedDatabase database(){
         EmbeddedDatabase db = new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
                 .addScript("classpath:create_donors_table.sql")
@@ -38,7 +38,7 @@ public class TestApplicationConfig {
     @Primary
     public JdbcTemplate jdbcTemplate() throws NamingException {
 
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(database());
         jdbcTemplate.setQueryTimeout(3000);
         return jdbcTemplate;
     }

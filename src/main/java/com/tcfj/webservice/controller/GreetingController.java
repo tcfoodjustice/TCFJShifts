@@ -1,7 +1,9 @@
 package com.tcfj.webservice.controller;
 
+import com.tcfj.webservice.service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,16 +15,18 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 public class GreetingController {
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-    @Autowired
-    Environment env;
-    @RequestMapping("/greetings")
-    public String greeting() {
-        return "Hello World";
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
     }
-    @RequestMapping("/environment")
-    public String env() {
-        return "another var: " + env.getProperty("DB_URL");
+
+    GreetingService greetingService;
+
+
+    @RequestMapping("/greetings/{greeting}")
+    public String greeting(@PathVariable String greeting) {
+        String result =  greetingService.getGreeting(greeting);
+        return result;
     }
+
 }
