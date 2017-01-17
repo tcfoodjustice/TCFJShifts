@@ -1,10 +1,12 @@
 package com.tcfj.webservice.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tcfj.webservice.dao.ShiftDao;
 import com.tcfj.webservice.model.Shift;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -18,6 +20,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -66,5 +69,23 @@ public class ShiftControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].comments", is(shift.getComments())));
 
+    }
+    @Test
+    public void testPostShiftReturns201() throws Exception {
+        Shift shift = new Shift();
+        given(shiftDao.insertShift(Mockito.anyObject())).willReturn(1);
+        this.mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(shift)))
+                .andExpect(status().isCreated());
+    }
+    @Test
+    public void testPostShiftReturns500() throws Exception {
+        Shift shift = new Shift();
+        given(shiftDao.insertShift(Mockito.anyObject())).willReturn(0);
+        this.mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(shift)))
+                .andExpect(status().is5xxServerError());
     }
 }

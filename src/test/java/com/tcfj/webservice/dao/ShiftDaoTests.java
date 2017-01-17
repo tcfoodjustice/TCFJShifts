@@ -13,6 +13,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -55,8 +56,15 @@ public class ShiftDaoTests {
         assertThat(shifts.get(0).getModeOfTransit(), is("car"));
         assertThat(shifts.get(0).getFoodDonatedWeight(), is(100));
         assertThat(shifts.get(0).getFoodCompostedWeight(), is(0));
-        assertThat(shifts.get(0).getFoodTypeSummary(), is("food_type_summary"));
+        assertThat(shifts.get(0).getFoodTypeSummary(), is("good food"));
         assertThat(shifts.get(0).getShiftLength(), is(25));
 
+    }
+
+    @Test
+    public void testInsertShiftsReturns1(){
+        Shift shift = new Shift();
+        int result = shiftDao.insertShift(shift);
+        assertEquals(result, 1);
     }
 }
