@@ -22,8 +22,7 @@ test:
     - docker run -d -p 8080:8080 --name shiftsservice larse514/tcfjshifts:$CIRCLE_SHA1; sleep 10
     - docker ps
     - docker port shiftsservice
-    - curl --retry 10 --retry-delay 5 http://localhost:8080/greetings/greeting | grep "greetinghello"
-
+    - newman run integration/TCFJ_Shift.postman_collection.json -e integration/TCFJ_LOCAL.postman_environment.json --timeout-request 5000
 deployment:
   development:
     branch: development
