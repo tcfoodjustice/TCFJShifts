@@ -31,6 +31,10 @@ public class ShiftDaoImpl implements ShiftDao {
             "shift_length,food_type_summary,comments,supplies_stocked,submit_time)" +
             "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURTIME())";
 
+    private final static String totalFoodDonatedWeight = "SELECT SUM(food_donated_weight)" +
+            "                                             FROM Shifts" +
+            "                                             WHERE food_donated_weight > 0";
+
 
 
     private JdbcTemplate jdbcTemplate;
@@ -68,6 +72,14 @@ public class ShiftDaoImpl implements ShiftDao {
         };
         return jdbcTemplate.update(insertShiftDetails, param, types);
 
+    }
+    /**
+     * Method to use jdbc template to get total food_donated_weight
+     */
+    @Override
+    public double getTotalFoodDonatedWeight() {
+        double sumOfFoodDonatedWeight = jdbcTemplate.queryForObject(totalFoodDonatedWeight, new Object[] { }, Double.class);
+        return sumOfFoodDonatedWeight;
     }
 
     /**

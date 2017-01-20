@@ -67,4 +67,12 @@ public class ShiftDaoTests {
         int result = shiftDao.insertShift(shift);
         assertEquals(result, 1);
     }
+    @Test
+    public void testGetTotalFoodDonatedWeightReturns100() {
+        double result = shiftDao.getTotalFoodDonatedWeight();
+        assertEquals(result, result, 0.00D);
+
+    }
+
+
 }

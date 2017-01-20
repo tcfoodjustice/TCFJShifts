@@ -1,9 +1,14 @@
 package com.tcfj.webservice.controller;
 
 import com.tcfj.webservice.dao.ShiftDao;
+import com.tcfj.webservice.model.Shift;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by MK on 10/23/2016.
@@ -19,9 +24,11 @@ public class FoodDonatedWeightController {
     @Autowired
     ShiftDao shiftDao;
     @RequestMapping("/shifts/foodDonatedWeight")
-    public long greeting() {
+    public double getTotalFoodDonatedWeight() {
         //use shiftDao to return response form a sql query of total weight
-        return 10000L;
+        double sum = shiftDao.getTotalFoodDonatedWeight();
+        return sum;
+
     }
 
 }
