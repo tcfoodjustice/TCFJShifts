@@ -13,5 +13,6 @@ public interface ShiftDao {
 
     List<Shift> getAllShifts();
     int insertShift(Shift shift);
+    double getTotalFoodDonatedWeight();
 
 }
