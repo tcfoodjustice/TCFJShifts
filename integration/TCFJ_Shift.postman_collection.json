@@ -7,7 +7,8 @@
 		"ef7df97d-41eb-95e7-127c-b4cc8d3d75ed",
 		"afc3d536-9d03-d311-b365-bef49236013c",
 		"2bd4d71c-ebf5-8ba4-35ef-0c0d6adba990",
-		"84bc0c97-9bc3-6076-5c5c-30c07d59cc64"
+		"84bc0c97-9bc3-6076-5c5c-30c07d59cc64",
+		"7c07dc44-e40d-2a6b-e847-8fda2182da84"
 	],
 	"folders": [],
 	"timestamp": 1484017199742,
@@ -32,6 +33,26 @@
 			"collectionId": "04a037a7-8e08-ac04-f9e7-87570625e5e3",
 			"responses": [],
 			"rawModeData": "{\n\t\"donarName\": \"{{recipientName}}\",\n\t\"recipientName\": \"{{donarName}}\",\n\t\"rescueDate\": \"{{rescueDate}}\",\n\t\"volunteer1\": \"Bob Belcher\",\n\t\"volunteer2\": \"Jimmy Pesto\",\n\t\"volunteer3\": \"\",\n\t\"pickUpTime\": \"2017-01-26\",\n\t\"modeOfTransit\": \"car\",\n\t\"foodDonatedWeight\": 100,\n\t\"foodCompostedWeight\": 0,\n\t\"shiftLength\": 25,\n\t\"foodTypeSummary\": \"good food\",\n\t\"comments\": \"no comment\",\n\t\"suppliesStocked\": true,\n\t\"submitTme\": \"2017-01-11 00:00:00\"\n}\n"
+		},
+		{
+			"id": "7c07dc44-e40d-2a6b-e847-8fda2182da84",
+			"headers": "",
+			"url": "{{URL}}/tcfj/v1/shifts/foodDonatedWeight",
+			"pathVariables": {},
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "04a037a7-8e08-ac04-f9e7-87570625e5e3",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get totalFoodDonatedWeight",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1484932523132,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
 		},
 		{
 			"id": "84bc0c97-9bc3-6076-5c5c-30c07d59cc64",
