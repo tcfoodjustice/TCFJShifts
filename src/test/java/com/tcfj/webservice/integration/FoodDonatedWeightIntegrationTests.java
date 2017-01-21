@@ -2,6 +2,7 @@ package com.tcfj.webservice.integration;
 
 import com.tcfj.webservice.Util.ShiftTestObjectCreator;
 import com.tcfj.webservice.dao.ShiftDao;
+import com.tcfj.webservice.dto.FoodTotalDTO;
 import com.tcfj.webservice.model.Shift;
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
@@ -73,10 +74,10 @@ public class FoodDonatedWeightIntegrationTests {
     @Test
     public void testGetTotalFoodDonatedWeightReturnsCorrectSum() {
 
-        ResponseEntity<Double> resp = this.testRestTemplate.getForEntity(url,Double.class);
+        ResponseEntity<FoodTotalDTO> resp = this.testRestTemplate.getForEntity(url,FoodTotalDTO.class);
         assertThat(resp.getStatusCode(), is (HttpStatus.OK));
 
-        assertThat(resp.getBody(), is (100D));
+        assertThat(resp.getBody().getTotal(), is (100D));
 
     }
 }

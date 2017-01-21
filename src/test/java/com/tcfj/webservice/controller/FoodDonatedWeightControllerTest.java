@@ -36,12 +36,14 @@ public class FoodDonatedWeightControllerTest {
     @MockBean
     private ShiftDao shiftDao;
 
+    private Double total;
     private String url = "/tcfj/v1/shifts/foodDonatedWeight";
     private List<Shift> shifts;
 
     @Before
     public void setup(){
         shifts = new ArrayList<>();
+        total = 1000D;
     }
     @Test
     public void testUrlNotFound() throws Exception {
@@ -51,10 +53,10 @@ public class FoodDonatedWeightControllerTest {
     }
     @Test
     public void testGetTotalFoodDonatedWeight() throws Exception {
-        given(shiftDao.getTotalFoodDonatedWeight()).willReturn(100D);
+        given(shiftDao.getTotalFoodDonatedWeight()).willReturn(total);
         this.mvc.perform(get(url)
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", is(shiftDao.getTotalFoodDonatedWeight())));
+                .andExpect(jsonPath("$.total", is(total)));
 
     }
 
