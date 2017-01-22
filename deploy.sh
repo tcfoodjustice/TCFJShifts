@@ -45,7 +45,7 @@ if [ $updateStatus = Updating ]; then
  done
  if [ $updateStatus = Ready ]; then
      #a hacky solution to deployment lag
-     sleep 10
+     sleep 15
      echo "Deployment succeeded!"
  else
      echo "Deployment failed with status $updateStatus"
