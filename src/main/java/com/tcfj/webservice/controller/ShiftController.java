@@ -36,10 +36,10 @@ public class ShiftController {
     public ResponseEntity insertShift(@RequestBody Shift shift){
         //an insert method will need to be created in the ShiftDao and called here.  It's common practice
         //to return the created shift after
-        int result = shiftDao.insertShift(shift);
-        if(result < 1) {
-            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+   //     int result = shiftDao.insertShift(shift);
+     //   if(result < 1) {
+       //     return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        //}
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
