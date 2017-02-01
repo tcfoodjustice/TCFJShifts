@@ -22,14 +22,14 @@ public class ShiftDaoImpl implements ShiftDao {
     //The query could use "select *" rather than each individual row,
     //but it is best practice to explicitly return the rows you want.
     //For performance reasons and to be explicit with what you need
-    private String getAllShifts = "select shift_id,donar_name,recipient_name,rescue_date,volunteer_1,volunteer_2," +
+    private String getAllShifts = "select organization_id, shift_id,donor_id,recipient_id,rescue_date,volunteer_1,volunteer_2," +
             "volunteer_3,pick_up_time,mode_of_transit,food_donated_weight,food_composted_weight,shift_length,food_type_summary," +
             "comments,supplies_stocked,submit_time from Shifts";
 
-    private final static String insertShiftDetails = "INSERT INTO Shifts" + "( donar_name, recipient_name, rescue_date, volunteer_1, " +
+    private final static String insertShiftDetails = "INSERT INTO Shifts" + "( organization_id, donor_id, recipient_id, rescue_date, volunteer_1, " +
             "volunteer_2, volunteer_3, pick_up_time, mode_of_transit,food_donated_weight,food_composted_weight," +
             "shift_length,food_type_summary,comments,supplies_stocked,submit_time)" +
-            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURTIME())";
+            "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,CURTIME())";
 
     private final static String totalFoodDonatedWeight = "SELECT SUM(food_donated_weight)" +
             "                                             FROM Shifts" +
@@ -63,11 +63,11 @@ public class ShiftDaoImpl implements ShiftDao {
      */
     @Override
     public int insertShift(Shift shift) {
-        Object[] param = {shift.getDonarName(), shift.getRecipientName(), shift.getRescueDate(), shift.getVolunteer1(),
+        Object[] param = {shift.getOrganizationId(), shift.getDonarId(), shift.getRecipientId(), shift.getRescueDate(), shift.getVolunteer1(),
         shift.getVolunteer2(), shift.getVolunteer3(), shift.getPickUpTime(), shift.getModeOfTransit(), shift.getFoodDonatedWeight(),
         shift.getFoodCompostedWeight(), shift.getShiftLength(), shift.getFoodTypeSummary(), shift.getComments(),
-        shift.isSuppliesStocked()};
-        int[] types = {Types.VARCHAR, Types.VARCHAR, Types.DATE, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
+        shift.getSuppliesStocked()};
+        int[] types = {Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.DATE, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
         Types.DATE, Types.VARCHAR, Types.INTEGER, Types.INTEGER, Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.TINYINT
         };
         return jdbcTemplate.update(insertShiftDetails, param, types);
@@ -91,9 +91,10 @@ public class ShiftDaoImpl implements ShiftDao {
         public Shift mapRow(ResultSet rs, int rowNum) throws SQLException {
             Shift shift = new Shift();
 
+            shift.setOrganizationId(rs.getInt("organization_id"));
             shift.setShiftId(rs.getInt("shift_id"));
-            shift.setDonarName(rs.getString("donar_name"));
-            shift.setRecipientName(rs.getString("recipient_name"));
+            shift.setDonarId(rs.getInt("donor_id"));
+            shift.setRecipientId(rs.getInt("recipient_id"));
             shift.setRescueDate(rs.getString("rescue_date"));
             shift.setVolunteer1(rs.getString("volunteer_1"));
             shift.setVolunteer2(rs.getString("volunteer_2"));

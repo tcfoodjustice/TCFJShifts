@@ -1,5 +1,6 @@
 package com.tcfj.webservice.dao;
 
+import com.tcfj.webservice.Util.ShiftTestObjectCreator;
 import com.tcfj.webservice.dao.impl.ShiftDaoImpl;
 import com.tcfj.webservice.model.Shift;
 import org.junit.After;
@@ -22,6 +23,7 @@ import static org.junit.Assert.assertThat;
 public class ShiftDaoTests {
     private EmbeddedDatabase db;
     private ShiftDao shiftDao;
+    private Shift shift;
 
     @Before
     public void setUp() {
@@ -36,6 +38,9 @@ public class ShiftDaoTests {
                 .addScript("classpath:insert_shift_data.sql")
                 .build();
         shiftDao = new ShiftDaoImpl(new JdbcTemplate(db));
+
+        shift = ShiftTestObjectCreator.createShift();
+
     }
 
     @After
@@ -48,9 +53,10 @@ public class ShiftDaoTests {
         List<Shift> shifts = shiftDao.getAllShifts();
 
         assertThat(shifts.size(), is(1));
+        assertThat(shifts.get(0).getOrganizationId(), is(1));
         assertThat(shifts.get(0).getShiftId(), is(1));
-        assertThat(shifts.get(0).getDonarName(), is("Seward Co-Op Friendship Store"));
-        assertThat(shifts.get(0).getRecipientName(), is("St.Stephens Homeless Shelter"));
+        assertThat(shifts.get(0).getDonarId(), is(1));
+        assertThat(shifts.get(0).getRecipientId(), is(1));
         assertThat(shifts.get(0).getVolunteer1(), is("Andrew Larsen"));
         assertThat(shifts.get(0).getVolunteer2(), is("Alec Larsen"));
         assertThat(shifts.get(0).getModeOfTransit(), is("car"));
@@ -63,7 +69,7 @@ public class ShiftDaoTests {
 
     @Test
     public void testInsertShiftsReturns1(){
-        Shift shift = new Shift();
+
         int result = shiftDao.insertShift(shift);
         assertEquals(result, 1);
     }

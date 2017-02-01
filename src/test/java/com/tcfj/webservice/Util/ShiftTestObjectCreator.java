@@ -11,13 +11,14 @@ public class ShiftTestObjectCreator {
     public static Shift createShift(){
         Shift shift = new Shift();
         shift.setComments("comments");
-        shift.setDonarName("2chains");
+        shift.setOrganizationId(1);
+        shift.setDonarId(1);
         shift.setFoodCompostedWeight(100);
         shift.setFoodTypeSummary("Foul");
         shift.setModeOfTransit("Dragon");
         shift.setPickUpTime("2017-01-16 00:00:00.0");
         shift.setFoodDonatedWeight(500);
-        shift.setRecipientName("2pac");
+        shift.setRecipientId(1);
         shift.setRescueDate("2017-01-16");
         shift.setShiftLength(60);
         shift.setSuppliesStocked(true);
