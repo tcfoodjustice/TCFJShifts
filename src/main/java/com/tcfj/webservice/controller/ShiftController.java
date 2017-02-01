@@ -23,23 +23,28 @@ public class ShiftController {
     //The request mapping dictates where the method is exposed.
     //in this can, when deployed locally, you would hit this
     //method at: localhost:8080/shifts
-    @RequestMapping("/shifts")
+    @RequestMapping("/organizations/shifts")
     public List<Shift> getAllShifts(){
         //this calls an returns the response from the getAllShifts method
         return shiftDao.getAllShifts();
     }
 
-    @PostMapping("/shifts")
+    @PostMapping("/organizations/{oid}/donors/{did}/recipients/{rid}/shifts")
     //This defines that a successful response will return a Http status of created (201)
     @ResponseStatus(HttpStatus.CREATED)
     //The @RequestBody is what contains the HTTP request body (in this case the shift to be inserted
-    public ResponseEntity insertShift(@RequestBody Shift shift){
+    public ResponseEntity insertShift(@RequestBody Shift shift,@PathVariable(value = "oid") Integer oid, @PathVariable(value = "did") Integer did,@PathVariable(value = "rid") Integer rid ){
+
         //an insert method will need to be created in the ShiftDao and called here.  It's common practice
         //to return the created shift after
-   //     int result = shiftDao.insertShift(shift);
-     //   if(result < 1) {
-       //     return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-        //}
+        shift.setOrganizationId(oid);
+        shift.setDonarId(did);
+        shift.setRecipientId(rid);
+
+        int result = shiftDao.insertShift(shift);
+        if(result < 1) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity(HttpStatus.CREATED);
     }
 

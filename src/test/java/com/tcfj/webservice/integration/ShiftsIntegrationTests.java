@@ -39,8 +39,8 @@ public class ShiftsIntegrationTests {
     TestRestTemplate testRestTemplate;
     @Autowired
     EmbeddedDatabase database;
-
-    private String url = "/tcfj/v1/shifts";
+    private String getUrl = "/tcfj/v1/organizations/shifts";
+    private String url = "/tcfj/v1/organizations/1/donors/2/recipients/3/shifts";
     private Shift shift;
     @Before
     public void setup(){
@@ -64,26 +64,27 @@ public class ShiftsIntegrationTests {
     }
     @Test
     public void test200Ok(){
-        ResponseEntity<String> resp = this.testRestTemplate.getForEntity(url,String.class);
+        ResponseEntity<String> resp = this.testRestTemplate.getForEntity(getUrl,String.class);
         assertThat(resp.getStatusCode(), is (HttpStatus.OK));
     }
     @Test
     public void testShiftsReturnsCorrentNumberOfShifts(){
-        ResponseEntity<List<Shift>> resp = this.testRestTemplate.exchange(url, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
+        ResponseEntity<List<Shift>> resp = this.testRestTemplate.exchange(getUrl, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
         {
         });
         assertThat(resp.getBody().size(), is (1));
     }
     @Test
     public void testShiftsReturnsCorrentShift(){
-        ResponseEntity<List<Shift>> resp = this.testRestTemplate.exchange(url, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
+        ResponseEntity<List<Shift>> resp = this.testRestTemplate.exchange(getUrl, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
         {
         });
         List<Shift> shifts = resp.getBody();
         assertThat(shifts.size(), CoreMatchers.is(1));
         assertThat(shifts.get(0).getShiftId(), CoreMatchers.is(1));
-        assertThat(shifts.get(0).getDonarName(), CoreMatchers.is("Seward Co-Op Friendship Store"));
-        assertThat(shifts.get(0).getRecipientName(), CoreMatchers.is("St.Stephens Homeless Shelter"));
+        assertThat(shifts.get(0).getOrganizationId(), CoreMatchers.is(1));
+        assertThat(shifts.get(0).getDonarId(), CoreMatchers.is(1));
+        assertThat(shifts.get(0).getRecipientId(), CoreMatchers.is(1));
         assertThat(shifts.get(0).getVolunteer1(), CoreMatchers.is("Andrew Larsen"));
         assertThat(shifts.get(0).getVolunteer2(), CoreMatchers.is("Alec Larsen"));
         assertThat(shifts.get(0).getModeOfTransit(), CoreMatchers.is("car"));
@@ -99,31 +100,31 @@ public class ShiftsIntegrationTests {
     }
     @Test
     public void testValueIsInserted(){
-    /*    ResponseEntity<List<Shift>> resp = this.testRestTemplate.exchange(url, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
+        ResponseEntity<List<Shift>> resp = this.testRestTemplate.exchange(getUrl, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
         {
         });
         int currentCount = resp.getBody().size();
         ResponseEntity<String> postResp = this.testRestTemplate.postForEntity(url, shift, String.class);
-        ResponseEntity<List<Shift>> newResp = this.testRestTemplate.exchange(url, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
+        ResponseEntity<List<Shift>> newResp = this.testRestTemplate.exchange(getUrl, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
         {
         });
         int newCount = newResp.getBody().size();
         assertEquals(currentCount + 1, newCount);
-        */
+
 
     }
     @Test
     public void testBadValueReturns500(){
-       /* shift.setRescueDate("THISISABADTIME");
+        shift.setRescueDate("THISISABADTIME");
         ResponseEntity<String> postResp = this.testRestTemplate.postForEntity(url, shift, String.class);
 
         assertEquals(postResp.getStatusCode(), HttpStatus.INTERNAL_SERVER_ERROR);
-*/
+
     }
     @Test
     public void testIsValueThere(){
-       /* ResponseEntity<String> postResp = this.testRestTemplate.postForEntity(url, shift, String.class);
-        ResponseEntity<List<Shift>> newResp = this.testRestTemplate.exchange(url, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
+        ResponseEntity<String> postResp = this.testRestTemplate.postForEntity(url, shift, String.class);
+        ResponseEntity<List<Shift>> newResp = this.testRestTemplate.exchange(getUrl, HttpMethod.GET,null, new ParameterizedTypeReference < List < Shift >> ()
         {
         });
         Shift insertedShift = null;
@@ -135,23 +136,24 @@ public class ShiftsIntegrationTests {
              }
         }
         assertNotNull(insertedShift);
-        assertEquals(insertedShift.getDonarName(), shift.getDonarName());
+        assertEquals(insertedShift.getOrganizationId(), Integer.valueOf(1));
+        assertEquals(insertedShift.getDonarId(), Integer.valueOf(2));
         assertEquals(insertedShift.getComments(), shift.getComments());
         assertEquals(insertedShift.getFoodCompostedWeight(), shift.getFoodCompostedWeight());
         assertEquals(insertedShift.getFoodDonatedWeight(), shift.getFoodDonatedWeight());
         assertEquals(insertedShift.getFoodTypeSummary(), shift.getFoodTypeSummary());
         assertEquals(insertedShift.getModeOfTransit(), shift.getModeOfTransit());
         assertEquals(insertedShift.getPickUpTime(), shift.getPickUpTime());
-        assertEquals(insertedShift.getRecipientName(), shift.getRecipientName());
+        assertEquals(insertedShift.getRecipientId(), Integer.valueOf(3));
         assertEquals(insertedShift.getRescueDate(), shift.getRescueDate());
         assertEquals(insertedShift.getShiftLength(), shift.getShiftLength());
         assertNotNull(insertedShift.getSubmitTime());
         assertEquals(insertedShift.getVolunteer1(), shift.getVolunteer1());
         assertEquals(insertedShift.getVolunteer2(), shift.getVolunteer2());
         assertEquals(insertedShift.getVolunteer3(), shift.getVolunteer3());
-        assertEquals(insertedShift.isSuppliesStocked(), shift.isSuppliesStocked());
+        assertEquals(insertedShift.getSuppliesStocked(), shift.getSuppliesStocked());
 
-*/
+
 
     }
 

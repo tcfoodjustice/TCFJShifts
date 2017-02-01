@@ -36,8 +36,8 @@ public class ShiftControllerTest {
     //the @MockBean tag will auto mock the controller dependencies
     @MockBean
     private ShiftDao shiftDao;
-
-    private String url = "/tcfj/v1/shifts";
+    private String getUrl = "/tcfj/v1/organizations/shifts";
+    private String url = "/tcfj/v1/organizations/1/donors/2/recipients/3/shifts";
     private List<Shift> shifts;
 
     @Before
@@ -54,7 +54,7 @@ public class ShiftControllerTest {
     public void testShiftsIsOk() throws Exception {
         shifts.add(new Shift());
         given(shiftDao.getAllShifts()).willReturn(shifts);
-        this.mvc.perform(get(url)
+        this.mvc.perform(get(getUrl)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
@@ -65,7 +65,7 @@ public class ShiftControllerTest {
         shift.setComments("THIS IS A TEST");
         shifts.add(shift);
         given(shiftDao.getAllShifts()).willReturn(shifts);
-        this.mvc.perform(get(url)
+        this.mvc.perform(get(getUrl)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].comments", is(shift.getComments())));
 
@@ -81,12 +81,12 @@ public class ShiftControllerTest {
     }
     @Test
     public void testPostShiftReturns500() throws Exception {
-     /*   Shift shift = new Shift();
+        Shift shift = new Shift();
         given(shiftDao.insertShift(Mockito.anyObject())).willReturn(0);
         this.mvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(shift)))
                 .andExpect(status().is5xxServerError());
-                */
+
     }
 }

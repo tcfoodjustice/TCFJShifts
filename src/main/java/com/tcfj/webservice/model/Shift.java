@@ -6,8 +6,8 @@ package com.tcfj.webservice.model;
 public class Shift {
 
     private Integer shiftId;
-    private String donarName;
-    private String recipientName;
+    private Integer donarId;
+    private Integer recipientId;
     private String rescueDate;
     private String volunteer1;
     private String volunteer2;
@@ -21,6 +21,7 @@ public class Shift {
     private String comments;
     private Boolean suppliesStocked;
     private String submitTime;
+    private Integer organizationId;
 
     public Integer getShiftId() {
         return shiftId;
@@ -30,20 +31,20 @@ public class Shift {
         this.shiftId = shiftId;
     }
 
-    public String getDonarName() {
-        return donarName;
+    public Integer getDonarId() {
+        return donarId;
     }
 
-    public void setDonarName(String donarName) {
-        this.donarName = donarName;
+    public void setDonarId(Integer donarId) {
+        this.donarId = donarId;
     }
 
-    public String getRecipientName() {
-        return recipientName;
+    public Integer getRecipientId() {
+        return recipientId;
     }
 
-    public void setRecipientName(String recipientName) {
-        this.recipientName = recipientName;
+    public void setRecipientId(Integer recipientId) {
+        this.recipientId = recipientId;
     }
 
     public String getRescueDate() {
@@ -134,7 +135,7 @@ public class Shift {
         this.comments = comments;
     }
 
-    public Boolean isSuppliesStocked() {
+    public Boolean getSuppliesStocked() {
         return suppliesStocked;
     }
 
@@ -148,5 +149,13 @@ public class Shift {
 
     public void setSubmitTime(String submitTime) {
         this.submitTime = submitTime;
+    }
+
+    public Integer getOrganizationId() {
+        return organizationId;
+    }
+
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
     }
 }
